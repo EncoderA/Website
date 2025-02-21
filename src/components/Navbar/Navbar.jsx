@@ -1,0 +1,100 @@
+'use client'
+import React, { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      
+      setVisible(
+        (prevScrollPos > currentScrollPos) || // Scrolling up
+        currentScrollPos < 10 // At the top
+      );
+      
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [prevScrollPos]);
+
+  const navLinks = [
+    { name: 'Home', href: '#' },
+    { name: 'About', href: '#' },
+    { name: 'Projects', href: '#' },
+    { name: 'Contact', href: '#' }
+  ];
+
+  return (
+    <>
+      <header 
+        className={`fixed top-0 left-0 !border-1 !border-gray-700 right-0 transition-transform duration-300 ease-in-out z-50 mt-3 mx-3 rounded-lg shadow-lg ${
+          visible ? 'translate-y-0' : '-translate-y-[120%]'
+        }`}
+      >
+        <nav className="bg-gradient-to-r from-gray-900/80 to-gray-800/80 backdrop-blur-md !border border-gray-600 rounded-lg">
+          <div className="flex items-center justify-between mx-10 h-16">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <h1 className="text-white font-bold text-xl">LOGO</h1>
+            </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:block">
+              <div className="flex items-center space-x-8">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="text-gray-300 hover:text-white transition-colors duration-200 font-medium"
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile menu button */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="text-gray-400 hover:text-white focus:outline-none"
+              >
+                {isOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile menu */}
+          <div className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}>
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="block px-3 py-2 text-gray-300 hover:text-white transition-colors duration-200"
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        </nav>
+      </header>
+      
+      {/* Add padding to the top of the page content */}
+      
+    </>
+  );
+};
+
+export default Navbar;
