@@ -4,10 +4,12 @@ import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import BlurText from "../BlurText/BlurText";
 import Typewriter from "typewriter-effect";
+import { LinkPreview } from "@/components/ui/link-preview";
 
 const World = dynamic(() => import("../ui/globe").then((m) => m.World), {
   ssr: false,
 });
+
 
 export function GlobeDemo() {
   const handleAnimationComplete = () => {
@@ -361,6 +363,7 @@ export function GlobeDemo() {
     ...arc,
     color: () => `rgba(6, 182, 212, 1)`,
   }));
+  
 
   return (
     <div className="flex flex-row items-center justify-between py-10 px-6 h-screen md:h-auto dark:bg-black bg-gradient-to-r from-gray-900 via-slate-800 to-gray-900 relative w-full">
@@ -381,51 +384,7 @@ export function GlobeDemo() {
             }}
             className="w-full"
           >
-            {/* <div className="text-left">
-              <h1 className="text-4xl md:text-6xl  font-bold text-white mb-4">
-                We Transform Ideas Into{" "}
-                <span className="block bg-gradient-to-r from-blue-400 to-teal-400 text-transparent bg-clip-text">
-                  <Typewriter
-                    options={{
-                      strings: [
-                        "Digital Excellence",
-                        "Scalable Solutions",
-                        "Enterprise Platforms",
-                        "Custom Web Apps",
-                        "Cloud Infrastructure",
-                        "Digital Experiences",
-                        "Business Growth",
-                      ],
-                      autoStart: true,
-                      loop: true,
-                      deleteSpeed: 50,
-                      delay: 80,
-                    }}
-                  />
-                </span>
-              </h1>
-
-              <p className="text-gray-300 text-lg md:text-xl mt-6 max-w-2xl leading-relaxed">
-                Empowering businesses with cutting-edge technology solutions that
-                drive innovation, enhance efficiency, and deliver measurable
-                results.
-              </p>
-
-              <div className="flex flex-wrap gap-4 mt-8">
-                <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-lg px-4 py-2">
-                  <span className="text-blue-400">•</span>
-                  <span className="text-gray-200">Enterprise Solutions</span>
-                </div>
-                <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-lg px-4 py-2">
-                  <span className="text-blue-400">•</span>
-                  <span className="text-gray-200">Custom Development</span>
-                </div>
-                <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-lg px-4 py-2">
-                  <span className="text-blue-400">•</span>
-                  <span className="text-gray-200">Digital Transformation</span>
-                </div>
-              </div>
-            </div> */}
+        
             <div className="text-left">
               <h1 className="text-3xl md:text-6xl font-bold text-white mb-4">
                 We Create{" "}
@@ -451,29 +410,89 @@ export function GlobeDemo() {
               </h1>
 
               <p className="text-gray-300 text-lg md:text-xl mt-6 max-w-2xl leading-relaxed">
-              Building next-gen apps with Next.js, React.js, PostgreSQL, and GSAP—delivering seamless, dynamic, and future-ready solutions from concept to deployment.
+                Building next-gen apps with Next.js, React.js, PostgreSQL, and
+                GSAP—delivering seamless, dynamic, and future-ready solutions
+                from concept to deployment.
               </p>
 
               <div className="flex flex-wrap gap-4 mt-8">
                 <div className="flex items-center space-x-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-lg px-4 py-2 hover:scale-105 transition-transform">
                   <span className="text-blue-400 font-mono">{"</>"}</span>
-                  <span className="text-gray-200">Next.js & React.js</span>
+                  <span className="text-gray-200">
+                    <LinkPreview
+                      url="https://nextjs.org/"
+                      className={"text-white cursor-pointer"}
+                    >
+                      Next.js
+                    </LinkPreview>{" "}
+                    &{" "}
+                    <LinkPreview
+                      url="https://reactjs.org/"
+                      className={"text-white cursor-pointer"}
+                    >
+                      React.js
+                    </LinkPreview>
+                  </span>
                 </div>
                 <div className="flex items-center space-x-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-lg px-4 py-2 hover:scale-105 transition-transform">
                   <span className="text-purple-400 font-mono">{"🔄"}</span>
-                  <span className="text-gray-200">Node.js, Prisma Schema</span>
+                  <span className="text-gray-200">
+                    <LinkPreview
+                      url="https://nodejs.org/en"
+                      className={"text-white cursor-pointer"}
+                    >
+                      Node.js
+                    </LinkPreview>
+                    ,{" "}
+                    <LinkPreview
+                      url="https://www.prisma.io/"
+                      className={"text-white cursor-pointer"}
+                    >
+                      Prisma Schema
+                    </LinkPreview>
+                  </span>
                 </div>
                 <div className="flex items-center space-x-2 bg-gradient-to-r from-teal-500/10 to-blue-500/10 border border-teal-500/20 rounded-lg px-4 py-2 hover:scale-105 transition-transform">
                   <span className="text-teal-400 font-mono">{"⚡"}</span>
-                  <span className="text-gray-200">GSAP Animations</span>
+                  <span className="text-gray-200">
+                    <LinkPreview
+                      url="https://gsap.com/"
+                      className={"text-white cursor-pointer"}
+                    >
+                      GSAP Animations
+                    </LinkPreview>
+                  </span>
                 </div>
                 <div className="flex items-center space-x-2 bg-gradient-to-r from-teal-500/10 to-blue-500/10 border border-teal-500/20 rounded-lg px-4 py-2 hover:scale-105 transition-transform">
                   <span className="text-teal-400 font-mono">{"🗄"}</span>
-                  <span className="text-gray-200">PostgreSQL</span>
+                  <span className="text-gray-200">
+                    <LinkPreview
+                      url={"https://www.postgresql.org/"}
+                      className={"text-white cursor-pointer"}
+                    >
+                      PostgreSQL
+                    </LinkPreview>
+                  </span>
                 </div>
                 <div className="flex items-center space-x-2 bg-gradient-to-r from-teal-500/10 to-blue-500/10 border border-teal-500/20 rounded-lg px-4 py-2 hover:scale-105 transition-transform">
                   <span className="text-teal-400 font-mono">{"🧠"}</span>
                   <span className="text-gray-200">Machine Learning</span>
+                </div>
+                <div className="flex items-center space-x-2 bg-gradient-to-r from-teal-500/10 to-blue-500/10 border border-teal-500/20 rounded-lg px-4 py-2 hover:scale-105 transition-transform">
+                  <span className="text-teal-400 font-mono">{"🌍"}</span>
+                  <span className="text-gray-200">
+                    <LinkPreview
+                      url="https://openlayers.org/"
+                      className={"text-white cursor-pointer"}
+                    >
+                      OpenLayers
+                    </LinkPreview>
+                  </span>
+                </div>
+
+                <div className="flex items-center space-x-2 bg-gradient-to-r from-teal-500/10 to-blue-500/10 border border-teal-500/20 rounded-lg px-4 py-2 hover:scale-105 transition-transform">
+                  <span className="text-teal-400 font-mono">{"🗺️"}</span>
+                  <span className="text-gray-200">GIS</span>
                 </div>
               </div>
 
