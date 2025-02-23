@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={``}>
-        <SplashCursor />
+        {/* <SplashCursor /> */}
         {children}
       </body>
     </html>
