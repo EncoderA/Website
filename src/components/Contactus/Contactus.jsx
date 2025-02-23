@@ -11,9 +11,9 @@ function Contactus() {
   const isInView = useInView(ref, { once: false });
   const [loading,setLoading] = useState(false)
   return (
-    <div className='bg-gradient-to-r from-gray-900 via-slate-800 to-gray-900 min-h-screen flex items-center justify-center'>
+    <BackgroundBeamsWithCollision className='bg-gradient-to-r from-gray-900 via-slate-800 to-gray-900 min-h-screen flex items-center justify-center'>
         <SignupFormDemo />
-    </div>
+    </BackgroundBeamsWithCollision>
   );
 }
 

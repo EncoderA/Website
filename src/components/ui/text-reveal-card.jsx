@@ -132,38 +132,56 @@ export const TextRevealCardDescription = ({
 };
 
 const Stars = () => {
-  const randomMove = () => Math.random() * 4 - 2;
-  const randomOpacity = () => Math.random();
-  const random = () => Math.random();
+  // Use state to store star positions
+  const [stars, setStars] = React.useState([]);
+
+  // Generate stars only on client-side
+  React.useEffect(() => {
+    const generateStars = () => {
+      return Array.from({ length: 80 }, () => ({
+        initialPosition: {
+          top: Math.random() * 100,
+          left: Math.random() * 100,
+        },
+        duration: Math.random() * 10 + 20,
+      }));
+    };
+    setStars(generateStars());
+  }, []);
+
   return (
-    (<div className="absolute inset-0">
-      {[...Array(80)].map((_, i) => (
+    <div className="absolute inset-0">
+      {stars.map((star, i) => (
         <motion.span
           key={`star-${i}`}
           animate={{
-            top: `calc(${random() * 100}% + ${randomMove()}px)`,
-            left: `calc(${random() * 100}% + ${randomMove()}px)`,
-            opacity: randomOpacity(),
+            top: [
+              `${star.initialPosition.top}%`,
+              `${star.initialPosition.top + (Math.random() * 4 - 2)}%`
+            ],
+            left: [
+              `${star.initialPosition.left}%`,
+              `${star.initialPosition.left + (Math.random() * 4 - 2)}%`
+            ],
+            opacity: [0, 1, 0],
             scale: [1, 1.2, 0],
           }}
           transition={{
-            duration: random() * 10 + 20,
+            duration: star.duration,
             repeat: Infinity,
             ease: "linear",
           }}
           style={{
             position: "absolute",
-            top: `${random() * 100}%`,
-            left: `${random() * 100}%`,
-            width: `2px`,
-            height: `2px`,
+            width: "2px",
+            height: "2px",
             backgroundColor: "white",
             borderRadius: "50%",
             zIndex: 1,
           }}
-          className="inline-block"></motion.span>
+        />
       ))}
-    </div>)
+    </div>
   );
 };
 

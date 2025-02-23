@@ -46,7 +46,7 @@ const Cube = ({ scrollProgress }) => {
         <group>
             {/* First cube */}
             <mesh ref={mesh} position={[-3, 0, 0]}>
-                <boxGeometry args={[3.5, 3.5, 3.5]} />
+                <boxGeometry args={[3, 3, 3]} />
                 <meshStandardMaterial map={texture_4} attach="material-3" />
                 <meshStandardMaterial map={texture_5} attach="material-4" />
                 <meshStandardMaterial map={texture_4} attach="material-0" />
@@ -56,8 +56,8 @@ const Cube = ({ scrollProgress }) => {
             </mesh>
 
             {/* Second cube */}
-            <mesh ref={mesh2} position={[1.75, 0, 0]}>
-                <boxGeometry args={[6, 3.5, 3.5]} />
+            <mesh ref={mesh2} position={[1.50, 0, 0]}>
+                <boxGeometry args={[6, 3, 3]} />
                 <meshStandardMaterial color="#111827" />
                 {/* <meshStandardMaterial map={texture_4} attach="material-3" /> */}
                 {/* <meshStandardMaterial map={texture_5} attach="material-4" />
@@ -74,9 +74,9 @@ const Cube = ({ scrollProgress }) => {
                     }}
                     center
                     rotation-x={0}
-                    position={[-0.2, 0, 1.80]}
+                    position={[-0.2, 0, 1.510]}
                     transform
-                    distanceFactor={5}
+                    distanceFactor={4}
                     occlude
                 >
                     <div className=" p-6 rounded-lg backdrop-blur-sm">
@@ -142,9 +142,9 @@ const Cube = ({ scrollProgress }) => {
                     }}
                     center
                     rotation-x={Math.PI / 2}
-                    position={[0, -1.75004, 0]}
+                    position={[0, -1.50004, 0]}
                     transform
-                    distanceFactor={5}
+                    distanceFactor={4}
                     occlude
                 >
                     <div className=" p-6 rounded-lg backdrop-blur-sm">

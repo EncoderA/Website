@@ -94,7 +94,7 @@ const Footer = () => {
           gravity={0.7}
           friction={0.8}
           wallBounce={0.95}
-          followCursor={true}
+          followCursor={false}
           materialParams={{
             metalness: 0.2,
             roughness: 0.3,

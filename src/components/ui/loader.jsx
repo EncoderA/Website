@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { CheckCircle, MessageSquareText } from 'lucide-react';
 
 const CubeLoader = ({ size = 100, color = "#6d28d9", isLoading = true }) => {
   return (
@@ -115,10 +116,18 @@ const LoaderContainer = ({ show = true,isDone }) => {
       <div className="p-8 rounded-2xl ">
         {/* <p className='mb-5'>Wait a minute</p> */}
         {isDone ?
-          <div className='text-white text-center'>
-              <p className='text-4xl font-bold mb-4'>Thank for Messaging</p>
-              <p className='text-3xl font-semibold'>We will respond you as soon as possible</p>
+          <div className="text-white text-center p-6">
+          <div className="flex flex-col items-center justify-center space-y-4">
+            <CheckCircle className="w-16 h-16 text-green-400" />
+            <p className="text-3xl font-bold">Thank You for Messaging</p>
+            <div className="flex items-center space-x-2">
+              <MessageSquareText className="w-6 h-6 text-blue-300" />
+              <p className="text-xl font-semibold">
+                We will respond as soon as possible
+              </p>
+            </div>
           </div>
+        </div>
         :<CubeLoader size={80} color="#6d28d9" isLoading={show} />}
       </div>
     </motion.div>
