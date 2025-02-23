@@ -4,14 +4,14 @@ import Description from "@/components/HeroSection/Description";
 import Earth, { GlobeDemo } from "@/components/HeroSection/Earth";
 import { TechnologyCards } from "@/components/HeroSection/Technolgy";
 import Navbar from "@/components/Navbar/Navbar";
-import { ThemeProvider } from "next-themes";
+import Contactus from "@/components/Contactus/Contactus";
+import CubeBox from "@/components/aboutus/cube";
 
 export default function Home() {
   const handleAnimationComplete = () => {
     console.log('Animation completed!');
   };
   return (
-    // <ThemeProvider attribute="class">
     <div className="bg-gradient-to-r from-gray-900 via-slate-800 to-gray-900">
       {/* <SplashCursor />   */}
       <div className="">
@@ -22,10 +22,11 @@ export default function Home() {
           <GlobeDemo />
           <Description />
           <TechnologyCards />
+          <CubeBox />
+          <Contactus />
           <Footer />
         </div>
       </main>
     </div>
-    // </ThemeProvider>
   );
 }
