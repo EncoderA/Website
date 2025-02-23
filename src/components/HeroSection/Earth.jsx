@@ -366,7 +366,7 @@ export function GlobeDemo() {
   
 
   return (
-    <div className="flex flex-row items-center justify-between py-10 px-6 h-screen md:h-auto dark:bg-black bg-gradient-to-r from-gray-900 via-slate-800 to-gray-900 relative w-full">
+    <div id="home" className="flex flex-row items-center justify-between py-10 px-0 md:px-6 h-screen md:h-auto dark:bg-black bg-gradient-to-r from-gray-900 via-slate-800 to-gray-900 relative w-full">
       <div className="max-w-full mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
         {/* Content Section - Left Side */}
         <div className="relative z-20 flex flex-col items-start justify-center h-full max-w-3xl">
@@ -519,7 +519,7 @@ export function GlobeDemo() {
         </div>
 
         {/* Globe Section - Right Side */}
-        <div className="absolute top-0 right-0 w-1/2 h-full z-10">
+        <div className="absolute top-0 right-0 w-full md:w-1/2 h-full z-10">
           <div className="relative w-full h-full">
             <div className="absolute w-full h-full">
               <World data={sampleArcs} globeConfig={globeConfig} />
