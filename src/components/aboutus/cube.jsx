@@ -15,7 +15,7 @@ export default function CubeBox() {
     })
     const progress = useTransform(scrollYProgress, [0, 1], [0, 2])
     return (
-        <div ref={container} className="w-full h-[200vh] bg-gradient-to-r from-gray-900 via-slate-800 to-gray-900">
+        <div ref={container} id="aboutus" className="w-full h-[200vh] bg-gradient-to-r from-gray-900 via-slate-800 to-gray-900">
             <div className="sticky top-0 w-full h-screen">
                 <Canvas>
                     <ambientLight intensity={2} />
