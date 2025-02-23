@@ -24,9 +24,10 @@ const Navbar = () => {
   }, [prevScrollPos]);
 
   const navLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'About', href: '#' },
-    { name: 'Projects', href: '#' },
+    { name: 'Home', href: '#home' },
+    { name: 'Services', href: '#services' },
+    { name: 'Technology', href: '#technolgy' },
+    { name: 'About us', href: '#' },
     { name: 'Contact', href: '#' }
   ];
 
@@ -51,9 +52,10 @@ const Navbar = () => {
                   <a
                     key={link.name}
                     href={link.href}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 font-medium"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 font-medium -translate-y-1 group"
                   >
                     {link.name}
+                    <span className='absolute left-0 bottom-0 w-0 h-0.5 bg-white duration-200 group-hover:w-full'></span>
                   </a>
                 ))}
               </div>
