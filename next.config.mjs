@@ -2,7 +2,8 @@
 const nextConfig = {
     images: {
         domains: [
-            "api.microlink.io", 
+            "api.microlink.io",
+            "assets.aceternity.com", 
         ],
     },
 };
