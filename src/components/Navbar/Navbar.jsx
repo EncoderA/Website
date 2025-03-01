@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,7 +43,7 @@ const Navbar = () => {
           <div className="flex items-center justify-between mx-10 h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <h1 className="text-white font-bold text-xl">LOGO</h1>
+              <Image src={'/logo.png'} width={100} height={100} alt='logo' className='w-32 h-32'/>
             </div>
 
             {/* Desktop Navigation */}

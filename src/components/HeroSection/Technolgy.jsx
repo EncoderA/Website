@@ -22,7 +22,7 @@ export function TechnologyCards() {
   const inView = useInView(ref, { once: false });
 
   return (
-    <div id="technolgy" className=" w-full bg-gradient-to-r from-gray-900 via-slate-800 to-gray-900 p-2">
+    <div id="technolgy" className=" w-full pb-10 bg-gradient-to-r from-gray-900 via-slate-800 to-gray-900 p-2">
       <motion.div
         ref={ref}
         initial={{ y: 50, opacity: 0 }}
