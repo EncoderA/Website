@@ -1,176 +1,249 @@
-import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import { useRef, useState } from "react";
-import { TextureLoader } from "three";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Github, Linkedin, Mail } from "lucide-react";
+// import React, { useRef } from "react";
+// import Image from "next/image";
+// import { PinContainer } from "@/components/ui/3d-pin";
+// import { useInView } from "framer-motion";
+// import { Boxes } from "../ui/background-boxes";
 
-export default function ProfileSection() {
-  const container = useRef();
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start end", "end start"]
-  });
+// function FoundersCards() {
+//   const rohanRef = useRef();
+//   const ankushRef = useRef();
+//   const isRohanInView = useInView(rohanRef, { once: true, amount: 0.5 });
+//   const isAnkushInView = useInView(ankushRef, { once: true, amount: 0.5 });
+
+//   return (
+//     <div
+//       id="founders"
+//       className="bg-gradient-to-r relative w-full h-full overflow-hidden from-gray-900 via-slate-800 to-gray-900"
+//     >
+//       <div className="min-h-screen relative">
+//         <Boxes />
+//         <div className="flex flex-col justify-center items-center pt-16 pb-8">
+//           <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">Founders</h2>
+//           <div className="w-24 h-1 bg-indigo-500 rounded mb-8"></div>
+//           <p className="text-center text-gray-300 text-lg md:text-xl mb-12 max-w-2xl px-4">
+//             Meet the visionaries behind Beat Coder
+//           </p>
+//         </div>
+
+//         <div className="grid md:grid-cols-2 grid-cols-1 gap-8 mx-auto w-11/12 md:w-[85%] max-w-6xl pb-16">
+//           {/* Rohan's Card */}
+//           <div className="w-full">
+//             <PinContainer
+//               title="LinkedIn Profile"
+//               href="https://www.linkedin.com/in/rohan-nagare-4078ab212/"
+//               className="w-full aspect-[4/5] flex flex-col items-center backdrop-blur-sm bg-gray-800/30 border border-gray-700/50 shadow-2xl rounded-2xl p-6"
+//             >
+//               <div className="flex flex-col items-center w-full h-full">
+//                 <div className="relative w-48 h-48 md:w-56 md:h-56 overflow-hidden rounded-full mb-6 bg-gradient-to-r from-indigo-500 to-purple-600 p-1">
+//                   <Image
+//                     ref={rohanRef}
+//                     src="/Rohan.png"
+//                     alt="Rohan Nagare"
+//                     width={224}
+//                     height={224}
+//                     className="rounded-full object-cover w-full h-full"
+//                   />
+//                 </div>
+
+//                 <h3 className="text-3xl font-bold text-white mb-2">Rohan Nagare</h3>
+//                 <p className="text-indigo-400 text-lg mb-4">Co-Founder & CTO</p>
+
+//                 {isRohanInView && (
+//                   <div className="text-gray-300 text-center mt-2">
+//                     <p className="mb-4">Full-stack developer with expertise in React and Node.js</p>
+//                     {/* <div className="flex justify-center gap-4 mt-4">
+//                       <span className="px-3 py-1 bg-gray-700/50 rounded-full text-sm">React</span>
+//                       <span className="px-3 py-1 bg-gray-700/50 rounded-full text-sm">Node.js</span>
+//                       <span className="px-3 py-1 bg-gray-700/50 rounded-full text-sm">AI</span>
+//                     </div> */}
+//                   </div>
+//                 )}
+//               </div>
+//             </PinContainer>
+//           </div>
+
+//           {/* Ankush's Card */}
+//           <div className="w-full">
+//             <PinContainer
+//               title="LinkedIn Profile"
+//               href="https://www.linkedin.com/in/ankush-khairnar-a51620208/"
+//               className="w-full aspect-[4/5] flex flex-col items-center backdrop-blur-sm bg-gray-800/30 border border-gray-700/50 shadow-2xl rounded-2xl p-6"
+//             >
+//               <div className="flex flex-col items-center w-full h-full">
+//                 <div className="relative w-48 h-48 md:w-56 md:h-56 overflow-hidden rounded-full mb-6 bg-gradient-to-r from-purple-600 to-indigo-500 p-1">
+//                   <Image
+//                     ref={ankushRef}
+//                     src="/Ankushbw.png"
+//                     alt="Ankush Khairnar"
+//                     width={224}
+//                     height={224}
+//                     className="rounded-full object-cover w-full h-full"
+//                   />
+//                 </div>
+
+//                 <h3 className="text-3xl font-bold text-white mb-2">Ankush Khairnar</h3>
+//                 <p className="text-indigo-400 text-lg mb-4">Co-Founder & CEO</p>
+
+//                 {isAnkushInView && (
+//                   <div className="text-gray-300 text-center mt-2">
+//                     <p className="mb-4">Product visionary with background in ML and data science</p>
+//                     {/* <div className="flex justify-center gap-4 mt-4">
+//                       <span className="px-3 py-1 bg-gray-700/50 rounded-full text-sm">ML</span>
+//                       <span className="px-3 py-1 bg-gray-700/50 rounded-full text-sm">Python</span>
+//                       <span className="px-3 py-1 bg-gray-700/50 rounded-full text-sm">Business</span>
+//                     </div> */}
+//                   </div>
+//                 )}
+//               </div>
+//             </PinContainer>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default FoundersCards;
+
+import React, { useRef } from "react";
+import Image from "next/image";
+import { PinContainer } from "@/components/ui/3d-pin";
+import { useInView } from "framer-motion";
+import { Boxes } from "../ui/background-boxes";
+
+function FoundersCards() {
+  const rohanRef = useRef();
+  const ankushRef = useRef();
+  const isRohanInView = useInView(rohanRef, { once: true, amount: 0.5 });
+  const isAnkushInView = useInView(ankushRef, { once: true, amount: 0.5 });
 
   return (
-    <div ref={container} id="about" className="w-full h-[200vh] bg-gradient-to-r from-gray-900 via-slate-800 to-gray-900">
-      <div className="sticky top-0 w-full h-screen flex items-center justify-center">
-        <div className="max-w-6xl w-full mx-auto px-4">
-          <motion.div 
-            className="flex flex-col md:flex-row items-center justify-center gap-12"
-            style={{
-              opacity: useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]),
-            }}
+    <div
+      id="about"
+      className="bg-gradient-to-r relative h-[120vh] w-full overflow-hidden from-gray-900 via-slate-800 to-gray-900"
+    >
+      {/* <Boxes /> */}
+
+      {/* Section Header */}
+      <div className="flex flex-col justify-center items-center pt-8 pb-16">
+        <h2 className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500 mb-4">
+          Founders
+        </h2>
+        <div className="w-32 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full mb-8"></div>
+        <p className="text-center text-gray-300 text-xl md:text-2xl mb-12 max-w-2xl px-6">
+          Meet the brilliant minds behind Beat Coder
+        </p>
+      </div>
+
+      {/* Cards Container */}
+      <div className="grid md:grid-cols-2 grid-cols-1 gap-12 mx-auto w-11/12 md:w-[85%] max-w-4xl">
+        {/* Rohan's Card */}
+        <div className="w-full transform hover:scale-105 transition-transform duration-300">
+          <PinContainer
+            title="Connect with Rohan on LinkedIn"
+            href="https://www.linkedin.com/in/rohan-nagare-4078ab212/"
+            className="w-full aspect-[4/5] flex flex-col items-center backdrop-blur-md bg-gradient-to-br from-gray-800/40 to-gray-900/40 border border-gray-700/50 shadow-2xl rounded-2xl p-8"
           >
-            <ProfileCard 
-              name="Alex Chen"
-              role="Frontend Developer"
-              image="/profile1.png" 
-              details={{
-                education: "3rd Year Computer Science Student",
-                university: "University of Technology",
-                techStack: "React • TypeScript • Node.js • Python",
-                projects: [
-                  { 
-                    title: "Weather Dashboard", 
-                    tech: "React, TypeScript, OpenWeather API",
-                    color: "purple"
-                  },
-                  { 
-                    title: "Task Management API", 
-                    tech: "Node.js, Express, MongoDB",
-                    color: "orange"
-                  }
-                ]
-              }}
-              // appearDelay={0}
-            />
-            
-            <ProfileCard 
-              name="Sarah Kim"
-              role="Backend Developer"
-              image="/profile2.jpg"
-              details={{
-                education: "4th Year Software Engineering",
-                university: "Tech Institute",
-                techStack: "Java • Spring • MongoDB • AWS",
-                projects: [
-                  { 
-                    title: "E-commerce Platform", 
-                    tech: "Spring Boot, PostgreSQL, Redis",
-                    color: "blue"
-                  },
-                  { 
-                    title: "Authentication Service", 
-                    tech: "Node.js, JWT, Firebase",
-                    color: "green"
-                  }
-                ]
-              }}
-              // appearDelay={0.2}
-            />
-          </motion.div>
+            <div className="flex flex-col items-center w-full h-full">
+              {/* Profile Image with Glow Effect */}
+              <div className="relative w-56 h-56 md:w-64 md:h-64 mb-8 group">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 blur-md opacity-75 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 p-1">
+                  <div className="w-full h-full rounded-full overflow-hidden bg-gray-900">
+                    <Image
+                      ref={rohanRef}
+                      src="/Rohan (2).png"
+                      alt="Rohan Nagare"
+                      width={256}
+                      height={256}
+                      className="rounded-full object-cover w-full h-full"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="text-center w-full">
+                <h3 className="text-4xl font-bold text-white mb-5">
+                  Rohan Nagare
+                </h3>
+                <div className="flex justify-center items-center gap-2 mb-6">
+                  <span className="px-4 py-1 bg-gradient-to-r shadow-md shadow-blue-400 from-indigo-600 to-indigo-800 rounded-full text-white font-medium">
+                    Co-Founder
+                  </span>
+                  {/* <span className="px-4 py-1 bg-gradient-to-r from-purple-600 to-purple-800 rounded-full text-white font-medium">
+                      CTO
+                    </span> */}
+                </div>
+
+                {isRohanInView && (
+                  <div className="space-y-6">
+                    <blockquote className="italic text-lg text-blue-200 border-l-4 border-blue-500 pl-4 my-6">
+                      "Frontend developer proficient in React, Next.js, Framer Motion and
+                      OpenLayers for dynamic user experiences."
+                    </blockquote>
+                  </div>
+                )}
+              </div>
+            </div>
+          </PinContainer>
+        </div>
+
+        {/* Ankush's Card */}
+        <div className="w-full transform hover:scale-105 transition-transform duration-300">
+          <PinContainer
+            title="Connect with Ankush on LinkedIn"
+            href="https://www.linkedin.com/in/ankush-khairnar-a51620208/"
+            className="w-full aspect-[4/5] flex flex-col items-center backdrop-blur-md bg-gradient-to-br from-gray-800/40 to-gray-900/40 border border-gray-700/50 shadow-2xl rounded-2xl p-8"
+          >
+            <div className="flex flex-col items-center w-full h-full">
+              {/* Profile Image with Glow Effect */}
+              <div className="relative w-56 h-56 md:w-64 md:h-64 mb-8 group">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600 to-indigo-500 blur-md opacity-75 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600 to-indigo-500 p-1">
+                  <div className="w-full h-full rounded-full overflow-hidden bg-gray-900">
+                    <Image
+                      ref={ankushRef}
+                      src="/Ankush.png"
+                      alt="Ankush Khairnar"
+                      width={256}
+                      height={256}
+                      className="rounded-full object-cover w-full h-full"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="text-center w-full">
+                <h3 className="text-4xl font-bold text-white mb-5">
+                  Ankush Khairnar
+                </h3>
+                <div className="flex justify-center items-center gap-2 mb-6">
+                  <span className="px-4 py-1 bg-gradient-to-r shadow-md shadow-blue-400 from-indigo-600 to-indigo-800 rounded-full text-white font-medium">
+                    Co-Founder
+                  </span>
+                  {/* <span className="px-4 py-1 bg-gradient-to-r from-purple-600 to-purple-800 rounded-full text-white font-medium">
+                      CEO
+                    </span> */}
+                </div>
+
+                {isAnkushInView && (
+                  <div className="space-y-6">
+                    <p className="text-gray-300 text-lg leading-relaxed"></p>
+                    <blockquote className="italic text-lg text-blue-200 border-l-4 border-blue-500 pl-4 my-6">
+                      "Backend developer skilled in Node.js, Express.js, Prisma, Drizzle ORM and
+                      PostgreSQL for scalable applications."
+                    </blockquote>
+                  </div>
+                )}
+              </div>
+            </div>
+          </PinContainer>
         </div>
       </div>
     </div>
   );
 }
 
-const ProfileCard = ({ name, role, image, details, appearDelay }) => {
-  const [isAnimating, setIsAnimating] = useState(false);
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
-
-  return (
-    <motion.div 
-      className="relative w-96 h-[450px] group"
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ 
-        duration: 0.8, 
-        delay: appearDelay,
-        ease: "easeOut"
-      }}
-      style={{ y }}
-    >
-      <div className="[perspective:1000px] w-full h-full">
-        <motion.div
-          className="w-full h-full rounded-xl shadow-2xl bg-gray-800 relative [transform-style:preserve-3d] transition-all duration-500 group-hover:[transform:rotateY(180deg)]"
-        >
-          {/* Front Face */}
-          
-          <div className="absolute w-full h-full rounded-xl overflow-hidden flex flex-col [backface-visibility:hidden]">
-            <div className="w-full h-3/4 overflow-hidden bg-gradient-to-b from-gray-700 to-gray-800">
-              <img 
-                src={image} 
-                alt={name} 
-                className="w-full h-full object-cover object-center opacity-90 hover:opacity-100 transition-opacity"
-              />
-            </div>
-            <div className="p-6 bg-gray-800 flex-grow">
-              <h2 className="text-white text-2xl font-bold">{name}</h2>
-              <p className="text-gray-400">{role}</p>
-            </div>
-            <div className="absolute top-3 right-3 flex space-x-2">
-              <a href="#" className="p-2 bg-gray-900 bg-opacity-70 rounded-full text-gray-400 hover:text-white transition-colors">
-                <Github size={16} />
-              </a>
-              <a href="#" className="p-2 bg-gray-900 bg-opacity-70 rounded-full text-gray-400 hover:text-white transition-colors">
-                <Linkedin size={16} />
-              </a>
-              <a href="#" className="p-2 bg-gray-900 bg-opacity-70 rounded-full text-gray-400 hover:text-white transition-colors">
-                <Mail size={16} />
-              </a>
-            </div>
-          </div>
-
-          {/* Back Face */}
-          <div 
-            className="absolute w-full h-full rounded-xl p-6 bg-gray-800 [transform:rotateY(180deg)] [backface-visibility:hidden]"
-          >
-            <div className="flex items-center mb-4">
-              <div className="w-20 h-20 rounded-full overflow-hidden mr-4">
-                <img src={image} alt={name} className="w-full h-full object-cover" />
-              </div>
-              <div>
-                <h2 className="text-white text-2xl font-bold">{name}</h2>
-                <p className="text-gray-400 text-base">{role}</p>
-              </div>
-            </div>
-            
-            <div className="space-y-4">
-              <div className="border-l-2 border-blue-600 pl-4">
-                <p className="text-gray-300 text-base">{details.education}</p>
-                <p className="text-gray-400 text-sm">{details.university}</p>
-              </div>
-
-              <div className="border-l-2 border-emerald-600 pl-4">
-                <h3 className="text-emerald-400 text-base font-medium mb-1">Tech Stack</h3>
-                <p className="text-gray-400 text-sm">{details.techStack}</p>
-              </div>
-              
-              {details.projects.map((project, index) => (
-                <div key={index} className={`border-l-2 border-${project.color}-600 pl-4`}>
-                  <h3 className={`text-${project.color}-400 text-base font-medium`}>{project.title}</h3>
-                  <p className="text-gray-400 text-sm">{project.tech}</p>
-                </div>
-              ))}
-            </div>
-            
-            <div className="absolute bottom-4 right-4 flex space-x-2">
-              <a href="#" className="p-2 bg-gray-700 rounded-full text-gray-400 hover:text-white transition-colors">
-                <Github size={16} />
-              </a>
-              <a href="#" className="p-2 bg-gray-700 rounded-full text-gray-400 hover:text-white transition-colors">
-                <Linkedin size={16} />
-              </a>
-              <a href="#" className="p-2 bg-gray-700 rounded-full text-gray-400 hover:text-white transition-colors">
-                <Mail size={16} />
-              </a>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </motion.div>
-  );
-};
+export default FoundersCards;

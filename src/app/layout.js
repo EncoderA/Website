@@ -10,7 +10,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={``}>
+      <body className='from-gray-900 via-slate-800 to-gray-900 '>
         <SplashCursor />
         {children}
       </body>

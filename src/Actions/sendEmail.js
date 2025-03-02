@@ -4,7 +4,7 @@ const resend = new Resend(process.env.NEXT_PUBLIC_RESEND)
 export const sendEmail = async (info) => {
     await resend.emails.send({
         from: 'onboarding@resend.dev',
-        to: 'rohannagare8355@gmail.com',
+        to: 'beatcoder12@gmail.com',
         subject: 'Bussiness Deal',
         html: `
             <div>

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Github, Linkedin, Twitter, Mail, Phone } from 'lucide-react';
 import Ballpit from '../reactbits/Ballpit/Ballpit';
 import { LinkPreview } from '../ui/link-preview';
+import Image from 'next/image';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -59,13 +60,18 @@ const Footer = () => {
       items: [
         { 
           icon: <Mail className="w-4 h-4" />, 
-          text: "contact@example.com",
-          href: "mailto:contact@example.com"
+          text: "beatcoder12@gmail.com",
+          href: "mailto:beatcoder12@gmail.com"
         },
         { 
           icon: <Phone className="w-4 h-4" />, 
-          text: "+1 (555) 123-4567",
-          href: "tel:+15551234567"
+          text: "+91 8237129823",
+          href: "tel:+918237129823"
+        },
+        { 
+          icon: <Phone className="w-4 h-4" />, 
+          text: "+91 91727 78355",
+          href: "tel:+919172778355"
         }
       ]
     },
@@ -110,7 +116,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
           <div>
-            <h3 className="text-2xl font-bold text-white mb-4">Your Company</h3>
+            {/* <h3 className="text-2xl font-bold text-white mb-4">Beat Coder</h3> */}
+            <Image src='/logo.png' alt="Beat Coder" width={100} height={100} className='p-0 m-0 w-48 h-30' />
             <p className="text-gray-400 mb-4">
               Building the future of web development with innovative solutions and cutting-edge technology.
             </p>

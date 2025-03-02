@@ -6,6 +6,8 @@ import { TechnologyCards } from "@/components/HeroSection/Technolgy";
 import Navbar from "@/components/Navbar/Navbar";
 import Contactus from "@/components/Contactus/Contactus";
 import CubeBox from "@/components/aboutus/cube";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Home() {
   const handleAnimationComplete = () => {
@@ -14,6 +16,7 @@ export default function Home() {
   return (
     <div className="bg-gradient-to-r from-gray-900 via-slate-800 to-gray-900">
       {/* <SplashCursor />   */}
+      <LoadingScreen />
       <div className="">
         <Navbar />
       </div>
@@ -30,3 +33,58 @@ export default function Home() {
     </div>
   );
 }
+
+const LoadingScreen = ({ onLoadComplete }) => {
+  const [loadingPercentage, setLoadingPercentage] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading process
+    const interval = setInterval(() => {
+      setLoadingPercentage(prev => {
+        // Slow down the loading as it approaches 100%
+        const increment = prev < 70 ? 5 : prev < 90 ? 3 : 1;
+        const nextValue = Math.min(prev + increment, 100);
+        
+        // When loading completes
+        if (nextValue === 100) {
+          clearInterval(interval);
+          
+          // Give a small delay before hiding the loading screen
+          setTimeout(() => {
+            setIsLoading(false);
+            if (onLoadComplete) onLoadComplete();
+          }, 400);
+        }
+        
+        return nextValue;
+      });
+    }, 100); // Update interval in milliseconds
+
+    return () => clearInterval(interval);
+  }, [onLoadComplete]);
+
+  if (!isLoading) return null;
+
+  return (
+    <div className="fixed inset-0 bg-gray-900 flex flex-col items-center justify-center z-50">
+      <h1 className="text-4xl font-bold text-white mb-8">
+        <Image src='/logo.png' alt="logo" width={100} height={100} className="w-80 h-36 object-cover"/>
+      </h1>
+      
+      {/* Loading bar container */}
+      <div className="w-64 h-3 bg-gray-700 rounded-full overflow-hidden">
+        {/* Loading bar progress */}
+        <div 
+          className="h-full bg-blue-500 transition-all duration-200"
+          style={{ width: `${loadingPercentage}%` }}
+        ></div>
+      </div>
+      
+      {/* Percentage text */}
+      <p className="text-white mt-4 font-medium">
+        {loadingPercentage}%
+      </p>
+    </div>
+  );
+};
