@@ -54,12 +54,12 @@ const LoadingScreen = ({ onLoadComplete }) => {
           setTimeout(() => {
             setIsLoading(false);
             if (onLoadComplete) onLoadComplete();
-          }, 100); // Reduced from 200ms to 100ms
+          }, 200); // Reduced from 200ms to 100ms
         }
         
         return nextValue;
       });
-    }, 25); // Reduced update interval from 25ms to 15ms
+    }, 45); // Reduced update interval from 25ms to 15ms
     
     return () => clearInterval(interval);
   }, [onLoadComplete]);
