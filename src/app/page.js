@@ -39,31 +39,31 @@ const LoadingScreen = ({ onLoadComplete }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading process
+    // Simulate loading process with faster increments
     const interval = setInterval(() => {
       setLoadingPercentage(prev => {
-        // Slow down the loading as it approaches 100%
-        const increment = prev < 70 ? 5 : prev < 90 ? 3 : 1;
+        // Increased increments for faster loading
+        const increment = prev < 70 ? 10 : prev < 90 ? 8 : 5;
         const nextValue = Math.min(prev + increment, 100);
         
         // When loading completes
         if (nextValue === 100) {
           clearInterval(interval);
           
-          // Give a small delay before hiding the loading screen
+          // Reduced delay before hiding the loading screen
           setTimeout(() => {
             setIsLoading(false);
             if (onLoadComplete) onLoadComplete();
-          }, 400);
+          }, 100); // Reduced from 200ms to 100ms
         }
         
         return nextValue;
       });
-    }, 100); // Update interval in milliseconds
-
+    }, 25); // Reduced update interval from 25ms to 15ms
+    
     return () => clearInterval(interval);
   }, [onLoadComplete]);
-
+  
   if (!isLoading) return null;
 
   return (
