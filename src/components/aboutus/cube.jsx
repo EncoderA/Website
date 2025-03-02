@@ -1,206 +1,176 @@
-import { OrbitControls, Html } from "@react-three/drei";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import { useRef } from "react";
-import { AdditiveBlending, TextureLoader } from "three";
-import { useScroll } from "framer-motion";
-import { useMotionValue, useTransform } from "framer-motion";
-import { Github, Linkedin, Mail, ExternalLink } from "lucide-react";
-import Typewriter from "typewriter-effect";
+import { OrbitControls } from "@react-three/drei";
+import { useRef, useState } from "react";
+import { TextureLoader } from "three";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Github, Linkedin, Mail } from "lucide-react";
 
-export default function CubeBox() {
-    const container = useRef()
-    const { scrollYProgress } = useScroll({
-        target: container,
-        offset: ["start start", "end end"]
-    })
-    const progress = useTransform(scrollYProgress, [0, 1], [0, 2])
-    return (
-        <div ref={container} id="aboutus" className="w-full h-[200vh] bg-gradient-to-r from-gray-900 via-slate-800 to-gray-900">
-            <div className="sticky top-0 w-full h-screen">
-                <Canvas>
-                    <ambientLight intensity={2} />
-                    <directionalLight position={[2, 1, 1]} intensity={1} />
-                    <Cube scrollProgress={progress} />
-                </Canvas>
-            </div>
+export default function ProfileSection() {
+  const container = useRef();
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start end", "end start"]
+  });
+
+  return (
+    <div ref={container} id="about" className="w-full h-[200vh] bg-gradient-to-r from-gray-900 via-slate-800 to-gray-900">
+      <div className="sticky top-0 w-full h-screen flex items-center justify-center">
+        <div className="max-w-6xl w-full mx-auto px-4">
+          <motion.div 
+            className="flex flex-col md:flex-row items-center justify-center gap-12"
+            style={{
+              opacity: useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]),
+            }}
+          >
+            <ProfileCard 
+              name="Alex Chen"
+              role="Frontend Developer"
+              image="/profile1.png" 
+              details={{
+                education: "3rd Year Computer Science Student",
+                university: "University of Technology",
+                techStack: "React • TypeScript • Node.js • Python",
+                projects: [
+                  { 
+                    title: "Weather Dashboard", 
+                    tech: "React, TypeScript, OpenWeather API",
+                    color: "purple"
+                  },
+                  { 
+                    title: "Task Management API", 
+                    tech: "Node.js, Express, MongoDB",
+                    color: "orange"
+                  }
+                ]
+              }}
+              // appearDelay={0}
+            />
+            
+            <ProfileCard 
+              name="Sarah Kim"
+              role="Backend Developer"
+              image="/profile2.jpg"
+              details={{
+                education: "4th Year Software Engineering",
+                university: "Tech Institute",
+                techStack: "Java • Spring • MongoDB • AWS",
+                projects: [
+                  { 
+                    title: "E-commerce Platform", 
+                    tech: "Spring Boot, PostgreSQL, Redis",
+                    color: "blue"
+                  },
+                  { 
+                    title: "Authentication Service", 
+                    tech: "Node.js, JWT, Firebase",
+                    color: "green"
+                  }
+                ]
+              }}
+              // appearDelay={0.2}
+            />
+          </motion.div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
-const Cube = ({ scrollProgress }) => {
-    const mesh = useRef()
-    const mesh2 = useRef()
+const ProfileCard = ({ name, role, image, details, appearDelay }) => {
+  const [isAnimating, setIsAnimating] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
 
-    useFrame(() => {
-        if (scrollProgress?.get !== undefined) {
-            const currentProgress = scrollProgress.get()
-            mesh.current.rotation.x = currentProgress * 0.79
-            mesh2.current.rotation.x = currentProgress * 0.79 * -1
-        }
-    })
+  return (
+    <motion.div 
+      className="relative w-96 h-[450px] group"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ 
+        duration: 0.8, 
+        delay: appearDelay,
+        ease: "easeOut"
+      }}
+      style={{ y }}
+    >
+      <div className="[perspective:1000px] w-full h-full">
+        <motion.div
+          className="w-full h-full rounded-xl shadow-2xl bg-gray-800 relative [transform-style:preserve-3d] transition-all duration-500 group-hover:[transform:rotateY(180deg)]"
+        >
+          {/* Front Face */}
+          
+          <div className="absolute w-full h-full rounded-xl overflow-hidden flex flex-col [backface-visibility:hidden]">
+            <div className="w-full h-3/4 overflow-hidden bg-gradient-to-b from-gray-700 to-gray-800">
+              <img 
+                src={image} 
+                alt={name} 
+                className="w-full h-full object-cover object-center opacity-90 hover:opacity-100 transition-opacity"
+              />
+            </div>
+            <div className="p-6 bg-gray-800 flex-grow">
+              <h2 className="text-white text-2xl font-bold">{name}</h2>
+              <p className="text-gray-400">{role}</p>
+            </div>
+            <div className="absolute top-3 right-3 flex space-x-2">
+              <a href="#" className="p-2 bg-gray-900 bg-opacity-70 rounded-full text-gray-400 hover:text-white transition-colors">
+                <Github size={16} />
+              </a>
+              <a href="#" className="p-2 bg-gray-900 bg-opacity-70 rounded-full text-gray-400 hover:text-white transition-colors">
+                <Linkedin size={16} />
+              </a>
+              <a href="#" className="p-2 bg-gray-900 bg-opacity-70 rounded-full text-gray-400 hover:text-white transition-colors">
+                <Mail size={16} />
+              </a>
+            </div>
+          </div>
 
-    const texture_4 = useLoader(TextureLoader, '/profile1.png')
-    const texture_5 = useLoader(TextureLoader, '/profile2.jpg')
+          {/* Back Face */}
+          <div 
+            className="absolute w-full h-full rounded-xl p-6 bg-gray-800 [transform:rotateY(180deg)] [backface-visibility:hidden]"
+          >
+            <div className="flex items-center mb-4">
+              <div className="w-20 h-20 rounded-full overflow-hidden mr-4">
+                <img src={image} alt={name} className="w-full h-full object-cover" />
+              </div>
+              <div>
+                <h2 className="text-white text-2xl font-bold">{name}</h2>
+                <p className="text-gray-400 text-base">{role}</p>
+              </div>
+            </div>
+            
+            <div className="space-y-4">
+              <div className="border-l-2 border-blue-600 pl-4">
+                <p className="text-gray-300 text-base">{details.education}</p>
+                <p className="text-gray-400 text-sm">{details.university}</p>
+              </div>
 
-    return (
-        <group>
-            {/* First cube */}
-            <mesh ref={mesh} position={[-3, 0, 0]}>
-                <boxGeometry args={[3, 3, 3]} />
-                <meshStandardMaterial map={texture_4} attach="material-3" />
-                <meshStandardMaterial map={texture_5} attach="material-4" />
-                <meshStandardMaterial map={texture_4} attach="material-0" />
-                <meshStandardMaterial map={texture_5} attach="material-1" />
-                <meshStandardMaterial map={texture_4} attach="material-2" />
-                <meshStandardMaterial map={texture_5} attach="material-5" />
-            </mesh>
-
-            {/* Second cube */}
-            <mesh ref={mesh2} position={[1.50, 0, 0]}>
-                <boxGeometry args={[6, 3, 3]} />
-                <meshStandardMaterial color="#111827" />
-                {/* <meshStandardMaterial map={texture_4} attach="material-3" /> */}
-                {/* <meshStandardMaterial map={texture_5} attach="material-4" />
-                <meshStandardMaterial map={texture_4} attach="material-0" />
-                <meshStandardMaterial map={texture_5} attach="material-1" />
-                <meshStandardMaterial map={texture_4} attach="material-2" />
-                <meshStandardMaterial map={texture_5} attach="material-5" /> */}
-
-                {/* Front HTML */}
-                <Html
-                    style={{
-                        width: '400px',
-                        height: "300px"
-                    }}
-                    center
-                    rotation-x={0}
-                    position={[-0.2, 0, 1.510]}
-                    transform
-                    distanceFactor={4}
-                    occlude
-                >
-                    <div className=" p-6 rounded-lg backdrop-blur-sm">
-                        <div className="flex items-center justify-between">
-                            <h1 className="text-white text-3xl font-bold mb-2">
-                                <Typewriter
-                                    options={{
-                                        strings: [
-                                            "Alex Chen",
-                                            "Frontend Dev"
-                                        ],
-                                        autoStart: true,
-                                        loop: true,
-                                        deleteSpeed: 50,
-                                        delay: 80,
-                                    }}
-                                />
-
-                            </h1>
-                            <div className=" flex space-x-4 ">
-                                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                                    <Github size={20} />
-                                </a>
-                                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                                    <Linkedin size={20} />
-                                </a>
-                                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                                    <Mail size={20} />
-                                </a>
-                            </div>
-                        </div>
-                        <p className="text-gray-400 text-sm mb-6">Computer Science Student & Developer</p>
-                        <div className="grid grid-cols-2 grid-rows-2 gap-4">
-                            <div className="border-l-2 border-blue-600 pl-4">
-                                <p className="text-gray-300 text-sm">3rd Year Computer Science Student</p>
-                                <p className="text-gray-400 text-xs">University of Technology</p>
-                            </div>
-
-                            <div className="border-l-2 border-emerald-600 pl-4">
-                                <h3 className="text-emerald-400 text-sm font-medium mb-1">Tech Stack</h3>
-                                <p className="text-gray-400 text-xs">React • TypeScript • Node.js • Python</p>
-                            </div>
-                            <div className="border-l-2 border-purple-600 pl-4">
-                                <h3 className="text-purple-400 text-sm font-medium">Weather Dashboard</h3>
-                                <p className="text-gray-400 text-xs">React, TypeScript, OpenWeather API</p>
-                            </div>
-                            <div className="border-l-2 border-orange-600 pl-4">
-                                <h3 className="text-orange-400 text-sm font-medium">Task Management API</h3>
-                                <p className="text-gray-400 text-xs">Node.js, Express, MongoDB</p>
-                            </div>
-                        </div>
-
-
-                        {/* */}
-                    </div>
-                </Html>
-                <Html
-                    style={{
-                        width: '400px',
-                        height: "320px",
-                        // back
-                        // transform: 'translateX(-50%) translateY(-50%) rotateX(90deg)'
-                    }}
-                    center
-                    rotation-x={Math.PI / 2}
-                    position={[0, -1.50004, 0]}
-                    transform
-                    distanceFactor={4}
-                    occlude
-                >
-                    <div className=" p-6 rounded-lg backdrop-blur-sm">
-                        <div className="flex items-center justify-between">
-                            <h1 className="text-white text-3xl font-bold mb-2">
-                            <Typewriter
-                                    options={{
-                                        strings: [
-                                            "Alex Chen",
-                                            "Backend Dev"
-                                        ],
-                                        autoStart: true,
-                                        loop: true,
-                                        deleteSpeed: 50,
-                                        delay: 80,
-                                    }}
-                                />
-                            </h1>
-                            <div className=" flex space-x-4 ">
-                                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                                    <Github size={20} />
-                                </a>
-                                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                                    <Linkedin size={20} />
-                                </a>
-                                <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                                    <Mail size={20} />
-                                </a>
-                            </div>
-                        </div>
-                        <p className="text-gray-400 text-sm mb-6">Computer Science Student & Developer</p>
-                        <div className="grid grid-cols-2 grid-rows-2 gap-4">
-                            <div className="border-l-2 border-blue-600 pl-4">
-                                <p className="text-gray-300 text-sm">3rd Year Computer Science Student</p>
-                                <p className="text-gray-400 text-xs">University of Technology</p>
-                            </div>
-
-                            <div className="border-l-2 border-emerald-600 pl-4">
-                                <h3 className="text-emerald-400 text-sm font-medium mb-1">Tech Stack</h3>
-                                <p className="text-gray-400 text-xs">React • TypeScript • Node.js • Python</p>
-                            </div>
-                            <div className="border-l-2 border-purple-600 pl-4">
-                                <h3 className="text-purple-400 text-sm font-medium">Weather Dashboard</h3>
-                                <p className="text-gray-400 text-xs">React, TypeScript, OpenWeather API</p>
-                            </div>
-                            <div className="border-l-2 border-orange-600 pl-4">
-                                <h3 className="text-orange-400 text-sm font-medium">Task Management API</h3>
-                                <p className="text-gray-400 text-xs">Node.js, Express, MongoDB</p>
-                            </div>
-                        </div>
-
-
-                        {/* */}
-                    </div>
-                </Html>
-            </mesh>
-        </group>
-    )
-}
+              <div className="border-l-2 border-emerald-600 pl-4">
+                <h3 className="text-emerald-400 text-base font-medium mb-1">Tech Stack</h3>
+                <p className="text-gray-400 text-sm">{details.techStack}</p>
+              </div>
+              
+              {details.projects.map((project, index) => (
+                <div key={index} className={`border-l-2 border-${project.color}-600 pl-4`}>
+                  <h3 className={`text-${project.color}-400 text-base font-medium`}>{project.title}</h3>
+                  <p className="text-gray-400 text-sm">{project.tech}</p>
+                </div>
+              ))}
+            </div>
+            
+            <div className="absolute bottom-4 right-4 flex space-x-2">
+              <a href="#" className="p-2 bg-gray-700 rounded-full text-gray-400 hover:text-white transition-colors">
+                <Github size={16} />
+              </a>
+              <a href="#" className="p-2 bg-gray-700 rounded-full text-gray-400 hover:text-white transition-colors">
+                <Linkedin size={16} />
+              </a>
+              <a href="#" className="p-2 bg-gray-700 rounded-full text-gray-400 hover:text-white transition-colors">
+                <Mail size={16} />
+              </a>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+};
