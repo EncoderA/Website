@@ -1,109 +1,4 @@
-// import React, { useRef } from "react";
-// import Image from "next/image";
-// import { PinContainer } from "@/components/ui/3d-pin";
-// import { useInView } from "framer-motion";
-// import { Boxes } from "../ui/background-boxes";
 
-// function FoundersCards() {
-//   const rohanRef = useRef();
-//   const ankushRef = useRef();
-//   const isRohanInView = useInView(rohanRef, { once: true, amount: 0.5 });
-//   const isAnkushInView = useInView(ankushRef, { once: true, amount: 0.5 });
-
-//   return (
-//     <div
-//       id="founders"
-//       className="bg-gradient-to-r relative w-full h-full overflow-hidden from-gray-900 via-slate-800 to-gray-900"
-//     >
-//       <div className="min-h-screen relative">
-//         <Boxes />
-//         <div className="flex flex-col justify-center items-center pt-16 pb-8">
-//           <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">Founders</h2>
-//           <div className="w-24 h-1 bg-indigo-500 rounded mb-8"></div>
-//           <p className="text-center text-gray-300 text-lg md:text-xl mb-12 max-w-2xl px-4">
-//             Meet the visionaries behind Beat Coder
-//           </p>
-//         </div>
-
-//         <div className="grid md:grid-cols-2 grid-cols-1 gap-8 mx-auto w-11/12 md:w-[85%] max-w-6xl pb-16">
-//           {/* Rohan's Card */}
-//           <div className="w-full">
-//             <PinContainer
-//               title="LinkedIn Profile"
-//               href="https://www.linkedin.com/in/rohan-nagare-4078ab212/"
-//               className="w-full aspect-[4/5] flex flex-col items-center backdrop-blur-sm bg-gray-800/30 border border-gray-700/50 shadow-2xl rounded-2xl p-6"
-//             >
-//               <div className="flex flex-col items-center w-full h-full">
-//                 <div className="relative w-48 h-48 md:w-56 md:h-56 overflow-hidden rounded-full mb-6 bg-gradient-to-r from-indigo-500 to-purple-600 p-1">
-//                   <Image
-//                     ref={rohanRef}
-//                     src="/Rohan.png"
-//                     alt="Rohan Nagare"
-//                     width={224}
-//                     height={224}
-//                     className="rounded-full object-cover w-full h-full"
-//                   />
-//                 </div>
-
-//                 <h3 className="text-3xl font-bold text-white mb-2">Rohan Nagare</h3>
-//                 <p className="text-indigo-400 text-lg mb-4">Co-Founder & CTO</p>
-
-//                 {isRohanInView && (
-//                   <div className="text-gray-300 text-center mt-2">
-//                     <p className="mb-4">Full-stack developer with expertise in React and Node.js</p>
-//                     {/* <div className="flex justify-center gap-4 mt-4">
-//                       <span className="px-3 py-1 bg-gray-700/50 rounded-full text-sm">React</span>
-//                       <span className="px-3 py-1 bg-gray-700/50 rounded-full text-sm">Node.js</span>
-//                       <span className="px-3 py-1 bg-gray-700/50 rounded-full text-sm">AI</span>
-//                     </div> */}
-//                   </div>
-//                 )}
-//               </div>
-//             </PinContainer>
-//           </div>
-
-//           {/* Ankush's Card */}
-//           <div className="w-full">
-//             <PinContainer
-//               title="LinkedIn Profile"
-//               href="https://www.linkedin.com/in/ankush-khairnar-a51620208/"
-//               className="w-full aspect-[4/5] flex flex-col items-center backdrop-blur-sm bg-gray-800/30 border border-gray-700/50 shadow-2xl rounded-2xl p-6"
-//             >
-//               <div className="flex flex-col items-center w-full h-full">
-//                 <div className="relative w-48 h-48 md:w-56 md:h-56 overflow-hidden rounded-full mb-6 bg-gradient-to-r from-purple-600 to-indigo-500 p-1">
-//                   <Image
-//                     ref={ankushRef}
-//                     src="/Ankushbw.png"
-//                     alt="Ankush Khairnar"
-//                     width={224}
-//                     height={224}
-//                     className="rounded-full object-cover w-full h-full"
-//                   />
-//                 </div>
-
-//                 <h3 className="text-3xl font-bold text-white mb-2">Ankush Khairnar</h3>
-//                 <p className="text-indigo-400 text-lg mb-4">Co-Founder & CEO</p>
-
-//                 {isAnkushInView && (
-//                   <div className="text-gray-300 text-center mt-2">
-//                     <p className="mb-4">Product visionary with background in ML and data science</p>
-//                     {/* <div className="flex justify-center gap-4 mt-4">
-//                       <span className="px-3 py-1 bg-gray-700/50 rounded-full text-sm">ML</span>
-//                       <span className="px-3 py-1 bg-gray-700/50 rounded-full text-sm">Python</span>
-//                       <span className="px-3 py-1 bg-gray-700/50 rounded-full text-sm">Business</span>
-//                     </div> */}
-//                   </div>
-//                 )}
-//               </div>
-//             </PinContainer>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default FoundersCards;
 
 import React, { useRef } from "react";
 import Image from "next/image";
@@ -120,7 +15,7 @@ function FoundersCards() {
   return (
     <div
       id="about"
-      className="bg-gradient-to-r relative h-[120vh] w-full overflow-hidden from-gray-900 via-slate-800 to-gray-900"
+      className="bg-gradient-to-r relative md:h-[120vh] h-[150vh] w-full overflow-hidden from-gray-900 via-slate-800 to-gray-900"
     >
       {/* <Boxes /> */}
 
@@ -136,7 +31,7 @@ function FoundersCards() {
       </div>
 
       {/* Cards Container */}
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-12 mx-auto w-11/12 md:w-[85%] max-w-4xl">
+      <div className="flex md:flex-row flex-col md:gap-12 gap-52 mx-auto w-11/12 pb-20 md:w-[85%] max-w-4xl">
         {/* Rohan's Card */}
         <div className="w-full transform hover:scale-105 transition-transform duration-300">
           <PinContainer
