@@ -34,15 +34,15 @@ const Navbar = () => {
 
   return (
     <>
-      <header 
+      <header style={{"zIndex":"52"}}
         className={`fixed top-0 left-0 !border-1 !border-gray-700 right-0 transition-transform duration-300 ease-in-out z-50 mt-3 mx-3 rounded-lg shadow-lg ${
           visible ? 'translate-y-0' : '-translate-y-[120%]'
         }`}
       >
         <nav className="bg-gradient-to-r from-gray-900/80 to-gray-800/80 backdrop-blur-md !border border-gray-600 rounded-lg">
-          <div className="flex items-center justify-between mx-10 h-16">
+          <div className="flex items-center justify-between md:mx-10 mx-5 h-16">
             {/* Logo */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 md:-ms-0 -ms-6">
               <Image src={'/logo.png'} width={100} height={100} alt='logo' className='w-32 h-32'/>
             </div>
 
