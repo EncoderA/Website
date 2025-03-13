@@ -14,6 +14,9 @@ export default {
 		boxShadow: {
 			input: `0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08)`,
 		  },
+		  animation: {
+			'shimmer': 'shimmer 2s infinite linear',
+		  },
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -56,6 +59,12 @@ export default {
   				'5': 'hsl(var(--chart-5))'
   			}
   		},
+		  keyframes: {
+			shimmer: {
+			  '0%': { transform: 'translateX(-100%)' },
+			  '100%': { transform: 'translateX(100%)' }
+			}
+		  },
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
