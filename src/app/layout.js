@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SplashCursor from "@/components/SplashCursor/SplashCursor";
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata = {
   title: "Beat Coder",
@@ -13,6 +14,7 @@ export default function RootLayout({ children }) {
       <body className='from-gray-900 via-slate-800 to-gray-900 '>
         {/* <SplashCursor /> */}
         {children}
+        <Analytics />
       </body>
     </html>
   );
