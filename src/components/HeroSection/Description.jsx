@@ -113,39 +113,39 @@ const Description = () => {
         </div>
       ),
     },
-    {
-      title: "Spatial Data Management",
-      content: (
-        <div>
-          <p className="text-neutral-200 dark:text-neutral-200 text-md md:text-xl font-normal mb-4">
-            GIS data processing and analysis using industry-standard tools
-          </p>
-          <div className="mb-8">
-            <div className="flex gap-2 items-center text-neutral-350 dark:text-neutral-300 text-xs md:text-sm">
-              🌍 PostGIS Database Integration
-            </div>
-            <div className="flex gap-2 items-center text-neutral-350 dark:text-neutral-300 text-xs md:text-sm">
-              🌍 QGIS Data Processing
-            </div>
-            <div className="flex gap-2 items-center text-neutral-350 dark:text-neutral-300 text-xs md:text-sm">
-              🌍 Spatial Analysis Tools
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <AnimatedImage
-              src="/Timeline/gisP.jpeg"
-              alt="GIS Processing"
-              className="rounded-lg object-cover h-44 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-            <AnimatedImage
-              src="/Timeline/spatial.png"
-              alt="Spatial Analysis"
-              className="rounded-lg bg-zinc-900 object-cover h-44 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-            />
-          </div>
-        </div>
-      ),
-    },
+    // {
+    //   title: "Spatial Data Management",
+    //   content: (
+    //     <div>
+    //       <p className="text-neutral-200 dark:text-neutral-200 text-md md:text-xl font-normal mb-4">
+    //         GIS data processing and analysis using industry-standard tools
+    //       </p>
+    //       <div className="mb-8">
+    //         <div className="flex gap-2 items-center text-neutral-350 dark:text-neutral-300 text-xs md:text-sm">
+    //           🌍 PostGIS Database Integration
+    //         </div>
+    //         <div className="flex gap-2 items-center text-neutral-350 dark:text-neutral-300 text-xs md:text-sm">
+    //           🌍 QGIS Data Processing
+    //         </div>
+    //         <div className="flex gap-2 items-center text-neutral-350 dark:text-neutral-300 text-xs md:text-sm">
+    //           🌍 Spatial Analysis Tools
+    //         </div>
+    //       </div>
+    //       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    //         <AnimatedImage
+    //           src="/Timeline/gisP.jpeg"
+    //           alt="GIS Processing"
+    //           className="rounded-lg object-cover h-44 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+    //         />
+    //         <AnimatedImage
+    //           src="/Timeline/spatial.png"
+    //           alt="Spatial Analysis"
+    //           className="rounded-lg bg-zinc-900 object-cover h-44 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+    //         />
+    //       </div>
+    //     </div>
+    //   ),
+    // },
     {
       title: "GSAP & Framer motion Animations",
       content: (

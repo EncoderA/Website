@@ -14,7 +14,7 @@ function FoundersCards() {
 
   return (
     <div
-      id="about"
+      id="aboutus"
       className="bg-gradient-to-r relative m-auto w-full overflow-hidden from-gray-900 via-slate-800 to-gray-900"
     >
       {/* <Boxes /> */}
